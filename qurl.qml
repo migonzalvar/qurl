@@ -8,6 +8,17 @@ Rectangle {
     width: 800
     height: 600
 
+    function refresh() {
+        var xhr = new XMLHttpRequest;
+        xhr.open("GET", urlTextInput.text);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                var a = JSON.parse(xhr.responseText);
+                resultText.text = JSON.stringify(a, null, '  ')
+            }
+        }
+        xhr.send();
+    }
 
     Rectangle {
         id: mainBar
@@ -38,6 +49,7 @@ Rectangle {
                 anchors.margins: 2
                 font.pixelSize: 12
                 text: "http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY="
+                onAccepted: refresh()
             }
         }
 
@@ -59,6 +71,7 @@ Rectangle {
                 MouseArea {
                     id: buttonArea
                     anchors.fill: parent
+                    onClicked: refresh()
                 }
             }
         }
