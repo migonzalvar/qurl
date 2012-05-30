@@ -5,8 +5,9 @@ import QtQuick 1.1
 
 Rectangle {
     id: main
-    width: 360
-    height: 360
+    width: 800
+    height: 600
+
 
     Rectangle {
         id: mainBar
@@ -17,16 +18,27 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 0
 
-        TextInput {
-            id: urlTextInput
-            width: parent.width-10-10-button.width
+        Rectangle {
+
+            x: 10
+            y: 10
+            width: parent.width-10-20-button.width
             height: 20
-            text: qsTr("URL")
+
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.top: parent.top
             anchors.topMargin: 10
-            font.pixelSize: 12
+
+            border.width: 1
+
+            TextInput {
+                id: urlTextInput
+                anchors.fill: parent
+                anchors.margins: 2
+                font.pixelSize: 12
+                text: "http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY="
+            }
         }
 
         Rectangle {
@@ -41,17 +53,16 @@ Rectangle {
             anchors.rightMargin: 10
             Text {
                 id: buttonText
-                text: "Buscar"
+                text: "GO"
                 horizontalAlignment: Text.AlignHCenter
                 anchors.fill: parent
                 MouseArea {
                     id: buttonArea
                     anchors.fill: parent
-                    onClicked: console.log("clicky")//page.state = ' '
-                    }
                 }
             }
         }
+    }
 
     Rectangle {
         id: resultRectangle
@@ -64,14 +75,17 @@ Rectangle {
 
         Text {
             id: resultText
-            text: qsTr("text")
+
             anchors.rightMargin: 10
             anchors.leftMargin: 10
             anchors.bottomMargin: 10
             anchors.topMargin: 10
             anchors.fill: parent
-            font.pixelSize: 12
-        }
 
+            font.pixelSize: 12
+
+            text: ""
+
+        }
     }
 }
