@@ -24,10 +24,12 @@ Rectangle {
         id: mainBar
         width: main.width
         height: 40
-        anchors.left: parent.left
-        anchors.leftMargin: 0
-        anchors.top: parent.top
-        anchors.topMargin: 0
+        anchors {
+            top: parent.top
+            topMargin: 0
+            left: parent.left
+            leftMargin: 0
+        }
 
         Rectangle {
 
@@ -35,18 +37,21 @@ Rectangle {
             y: 10
             width: parent.width-10-20-button.width
             height: 20
-
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.top: parent.top
-            anchors.topMargin: 10
+            anchors {
+                top: parent.top
+                topMargin: 10
+                left: parent.left
+                leftMargin: 10
+            }
 
             border.width: 1
 
             TextInput {
                 id: urlTextInput
-                anchors.fill: parent
-                anchors.margins: 2
+                anchors {
+                    fill: parent
+                    margins: 2
+                }
                 font.pixelSize: 12
                 text: "http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY="
                 onAccepted: refresh()
@@ -59,10 +64,12 @@ Rectangle {
             radius: 3
             width: 60
             height: 20
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.right: parent.right
-            anchors.rightMargin: 10
+            anchors {
+                top: parent.top
+                topMargin: 10
+                right: parent.right
+                rightMargin: 10
+            }
             Text {
                 id: buttonText
                 text: "GO"
@@ -81,19 +88,23 @@ Rectangle {
         id: resultRectangle
         width: main.width
         color: "#eee"
-        anchors.bottom: main.bottom
-        anchors.bottomMargin: 0
-        anchors.top: mainBar.bottom
-        anchors.topMargin: 0
+        anchors {
+            bottom: main.bottom
+            bottomMargin: 0
+            top: mainBar.bottom
+            topMargin: 0
+        }
 
         Text {
             id: resultText
 
-            anchors.rightMargin: 10
-            anchors.leftMargin: 10
-            anchors.bottomMargin: 10
-            anchors.topMargin: 10
-            anchors.fill: parent
+            anchors {
+                rightMargin: 10
+                leftMargin: 10
+                bottomMargin: 10
+                topMargin: 10
+                fill: parent
+            }
 
             font.pixelSize: 12
 
