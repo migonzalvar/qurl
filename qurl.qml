@@ -95,8 +95,11 @@ Rectangle {
             topMargin: 0
         }
 
-        Text {
+        TextEdit {
             id: resultText
+
+            readOnly: true
+            selectByMouse: true
 
             anchors {
                 rightMargin: 10
