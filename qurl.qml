@@ -1,12 +1,14 @@
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
+import QtDesktop 0.1
 
 // http://people.igalia.com/spena/QML-exercise.html
+// http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY=
 
 Rectangle {
     id: main
-    width: 800
-    height: 600
+    width: 600
+    height: 480
 
     function refresh() {
         var xhr = new XMLHttpRequest;
@@ -23,7 +25,7 @@ Rectangle {
     Rectangle {
         id: mainBar
         width: main.width
-        height: 40
+        height: 50
         anchors {
             top: parent.top
             topMargin: 0
@@ -31,71 +33,50 @@ Rectangle {
             leftMargin: 0
         }
 
-        Rectangle {
-            x: 10
-            y: 10
+        TextField {
+            id: urlTextInput
             width: parent.width-10-20-button.width
-            height: 20
             anchors {
                 top: parent.top; topMargin: 10
                 left: parent.left; leftMargin: 10
             }
+            placeholderText: "The URL goes here"
 
-            border.width: 1
-
-            TextInput {
-                id: urlTextInput
-                anchors {
-                    fill: parent; margins: 2
-                }
-                font.pixelSize: 12
-                text: "http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY="
-                onAccepted: refresh()
-            }
+            Keys.onReturnPressed: refresh()
         }
 
-        Rectangle {
+        Button {
             id: button
-            color: "red"
-            radius: 3
+
             width: 60
-            height: 20
             anchors {
                 top: parent.top; topMargin: 10
                 right: parent.right; rightMargin: 10
             }
-            Text {
-                id: buttonText
-                text: "GO"
-                horizontalAlignment: Text.AlignHCenter
-                anchors.fill: parent
-                MouseArea {
-                    id: buttonArea
-                    anchors.fill: parent
-                    onClicked: refresh()
-                }
-            }
+            text: "GO"
+
+            onClicked: refresh()
         }
     }
 
     Rectangle {
         id: resultRectangle
+
         width: main.width
-        color: "#eee"
         anchors {
             top: mainBar.bottom; topMargin: 0
             bottom: main.bottom; bottomMargin: 0
         }
 
-        TextEdit {
+        TextArea {
             id: resultText
+
             readOnly: true
-            selectByMouse: true
+            wrapMode: TextEdit.WrapAnywhere
             anchors {
-                topMargin: 10; rightMargin: 10; bottomMargin: 10; leftMargin: 10
+                topMargin: 0; rightMargin: 10; bottomMargin: 10; leftMargin: 10
                 fill: parent
             }
-            font.pixelSize: 12
             text: ""
         }
     }
