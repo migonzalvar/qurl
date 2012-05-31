@@ -32,16 +32,13 @@ Rectangle {
         }
 
         Rectangle {
-
             x: 10
             y: 10
             width: parent.width-10-20-button.width
             height: 20
             anchors {
-                top: parent.top
-                topMargin: 10
-                left: parent.left
-                leftMargin: 10
+                top: parent.top; topMargin: 10
+                left: parent.left; leftMargin: 10
             }
 
             border.width: 1
@@ -49,8 +46,7 @@ Rectangle {
             TextInput {
                 id: urlTextInput
                 anchors {
-                    fill: parent
-                    margins: 2
+                    fill: parent; margins: 2
                 }
                 font.pixelSize: 12
                 text: "http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY="
@@ -65,10 +61,8 @@ Rectangle {
             width: 60
             height: 20
             anchors {
-                top: parent.top
-                topMargin: 10
-                right: parent.right
-                rightMargin: 10
+                top: parent.top; topMargin: 10
+                right: parent.right; rightMargin: 10
             }
             Text {
                 id: buttonText
@@ -89,30 +83,20 @@ Rectangle {
         width: main.width
         color: "#eee"
         anchors {
-            bottom: main.bottom
-            bottomMargin: 0
-            top: mainBar.bottom
-            topMargin: 0
+            top: mainBar.bottom; topMargin: 0
+            bottom: main.bottom; bottomMargin: 0
         }
 
         TextEdit {
             id: resultText
-
             readOnly: true
             selectByMouse: true
-
             anchors {
-                rightMargin: 10
-                leftMargin: 10
-                bottomMargin: 10
-                topMargin: 10
+                topMargin: 10; rightMargin: 10; bottomMargin: 10; leftMargin: 10
                 fill: parent
             }
-
             font.pixelSize: 12
-
             text: ""
-
         }
     }
 }
