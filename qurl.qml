@@ -61,7 +61,6 @@ Rectangle {
 
     Rectangle {
         id: resultRectangle
-
         width: main.width
         anchors {
             top: mainBar.bottom; topMargin: 0
@@ -70,7 +69,6 @@ Rectangle {
 
         TextArea {
             id: resultText
-
             readOnly: true
             wrapMode: TextEdit.WrapAnywhere
             anchors {
