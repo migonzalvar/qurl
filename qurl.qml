@@ -12,7 +12,8 @@ Rectangle {
 
     function refresh() {
         var xhr = new XMLHttpRequest;
-        xhr.open("GET", urlTextInput.text);
+        console.debug(combo.selectedText, urlTextInput.text)
+        xhr.open(combo.selectedText, urlTextInput.text);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 var a = JSON.parse(xhr.responseText);
@@ -20,6 +21,12 @@ Rectangle {
             }
         }
         xhr.send();
+    }
+
+    ListModel {
+        id: choices
+        ListElement { text: "GET" }
+        ListElement { text: "POST" }
     }
 
     Rectangle {
@@ -33,29 +40,35 @@ Rectangle {
             leftMargin: 0
         }
 
-        TextField {
-            id: urlTextInput
-            width: parent.width-10-20-button.width
+        Row {
+            spacing: 10
             anchors {
-                top: parent.top; topMargin: 10
-                left: parent.left; leftMargin: 10
+                topMargin: 10; rightMargin: 10; bottomMargin: 10; leftMargin: 10
+                fill: parent
             }
-            placeholderText: "The URL goes here"
 
-            Keys.onReturnPressed: refresh()
-        }
+            TextField {
+                id: urlTextInput
+                width: mainBar.width-10-20-button.width-20-combo.width
+                placeholderText: "The URL goes here"
 
-        Button {
-            id: button
-
-            width: 60
-            anchors {
-                top: parent.top; topMargin: 10
-                right: parent.right; rightMargin: 10
+                Keys.onReturnPressed: refresh()
             }
-            text: "GO"
 
-            onClicked: refresh()
+            ComboBox {
+                id: combo;
+                model: choices;
+                width: 60
+            }
+
+
+            Button {
+                id: button
+                width: 60
+                text: "GO"
+
+                onClicked: refresh()
+            }
         }
     }
 
