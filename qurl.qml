@@ -15,9 +15,25 @@ Rectangle {
         console.debug(combo.selectedText, urlTextInput.text)
         xhr.open(combo.selectedText, urlTextInput.text);
         xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                var a = JSON.parse(xhr.responseText);
-                resultText.text = JSON.stringify(a, null, '  ')
+            if (xhr.status == 200) {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        var a = JSON.parse(xhr.responseText);
+                        resultText.text = JSON.stringify(a, null, '  ');
+                    } catch (e) {
+                        resultText.text = ("Parsing errors"
+                                + '\n---- Raw reponse ----\n'
+                                + xhr.responseText)
+                    }
+                }
+            }
+            else
+            {
+                var headers =  xhr.getAllResponseHeaders() ? xhr.getAllResponseHeaders(): "No response";
+                resultText.text = ('Network errors (Error '
+                                   + xhr.status.toString() + ')'
+                                   + '\n---- Headers ----\n'
+                                   + headers)
             }
         }
         xhr.send();
