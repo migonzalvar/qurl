@@ -10,8 +10,11 @@ Rectangle {
     width: 600
     height: 480
 
+    property bool loading: false
+
     function refresh() {
         var xhr = new XMLHttpRequest;
+        loading = true
         console.debug(combo.selectedText, urlTextInput.text)
         xhr.open(combo.selectedText, urlTextInput.text);
         xhr.onreadystatechange = function() {
@@ -35,6 +38,7 @@ Rectangle {
                                    + '\n---- Headers ----\n'
                                    + headers)
             }
+            loading = false
         }
         xhr.send();
     }
@@ -86,6 +90,13 @@ Rectangle {
                 onClicked: refresh()
             }
         }
+    }
+
+    ProgressBar {
+        width: parent.width
+        height: 6
+        indeterminate: true
+        visible: loading
     }
 
     Rectangle {
