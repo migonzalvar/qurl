@@ -22,6 +22,23 @@ Rectangle {
 
     property bool loading: false
 
+    states: [
+        State {
+            name: "LOADING";
+            when: (main.loading)
+            PropertyChanges { target: urlTextInput; enabled: false;}
+            PropertyChanges { target: resultText; enabled: false;}
+            PropertyChanges { target: loadingImage; visible: true;}
+        },
+        State {
+            name: "READY";
+            when: (!main.loading)
+            PropertyChanges { target: urlTextInput; enabled: true;}
+            PropertyChanges { target: resultText; enabled: true;}
+            PropertyChanges { target: loadingImage; visible: false;}
+        }
+    ]
+
     function refresh() {
         var xhr = new XMLHttpRequest;
         loading = true
@@ -125,6 +142,13 @@ Rectangle {
                 fill: parent
             }
             text: ""
+
+            AnimatedImage {
+                id: loadingImage;
+                visible: false;
+                anchors.centerIn: resultRectangle;
+                source: "ajax-loader.gif"
+            }
         }
     }
 }
