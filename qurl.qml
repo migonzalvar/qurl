@@ -1,9 +1,6 @@
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 import QtDesktop 0.1
 
-// http://people.igalia.com/spena/QML-exercise.html
-// http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY=
 
 Rectangle {
     id: main
@@ -80,7 +77,6 @@ Rectangle {
                 model: choices;
                 width: 60
             }
-
 
             Button {
                 id: button

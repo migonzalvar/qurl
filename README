@@ -1,0 +1,21 @@
+QML session - Free SW Master - 2011 / 2012
+==========================================
+
+Exercise: A QML curl replacement
+--------------------------------
+
+Develop a small application which
+
+- Queries a web service providing some JSON API
+- Lets the user manually specify the URL for that service
+- Parses the JSON response from the server and displays it
+
+More info: http://people.igalia.com/spena/QML-exercise.html
+
+Testing URL
+~~~~~~~~~~~
+
+- http://search.twitter.com/search.json?q=%40mswl
+- http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY=
+- http://www.w3schools.com/jquery/demo_ajax_json.js
+
