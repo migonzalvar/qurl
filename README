@@ -1,5 +1,6 @@
 QML session - Free SW Master - 2011 / 2012
 ==========================================
+Miguel González <migonzalvar@gmail.com>
 
 Exercise: A QML curl replacement
 --------------------------------
@@ -18,4 +19,3 @@ Testing URL
 - http://search.twitter.com/search.json?q=%40mswl
 - http://www.meteogalicia.es/meteosix-api/findPlaces?location=santi&API_KEY=
 - http://www.w3schools.com/jquery/demo_ajax_json.js
-
