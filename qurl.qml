@@ -126,13 +126,16 @@ Rectangle {
                 fill: parent
             }
             text: ""
+        }
 
-            AnimatedImage {
-                id: loadingImage;
-                visible: false;
-                anchors.centerIn: resultRectangle;
-                source: "ajax-loader.gif"
+        AnimatedImage {
+            id: loadingImage;
+            visible: false;
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
             }
+            source: "ajax-loader.gif"
         }
     }
 
