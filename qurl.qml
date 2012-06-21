@@ -17,27 +17,8 @@ import QtDesktop 0.1
 
 Rectangle {
     id: main
-    width: 600
-    height: 480
 
     property bool loading: false
-
-    states: [
-        State {
-            name: "LOADING";
-            when: (main.loading)
-            PropertyChanges { target: urlTextInput; enabled: false;}
-            PropertyChanges { target: resultText; enabled: false;}
-            PropertyChanges { target: loadingImage; visible: true;}
-        },
-        State {
-            name: "READY";
-            when: (!main.loading)
-            PropertyChanges { target: urlTextInput; enabled: true;}
-            PropertyChanges { target: resultText; enabled: true;}
-            PropertyChanges { target: loadingImage; visible: false;}
-        }
-    ]
 
     function refresh() {
         var xhr = new XMLHttpRequest;
@@ -69,6 +50,9 @@ Rectangle {
         }
         xhr.send();
     }
+
+    width: 600
+    height: 480
 
     ListModel {
         id: choices
@@ -151,4 +135,21 @@ Rectangle {
             }
         }
     }
+
+    states: [
+        State {
+            name: "LOADING";
+            when: (main.loading)
+            PropertyChanges { target: urlTextInput; enabled: false;}
+            PropertyChanges { target: resultText; enabled: false;}
+            PropertyChanges { target: loadingImage; visible: true;}
+        },
+        State {
+            name: "READY";
+            when: (!main.loading)
+            PropertyChanges { target: urlTextInput; enabled: true;}
+            PropertyChanges { target: resultText; enabled: true;}
+            PropertyChanges { target: loadingImage; visible: false;}
+        }
+    ]
 }
